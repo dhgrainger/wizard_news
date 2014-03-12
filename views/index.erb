@@ -22,8 +22,8 @@
 
     <ul>
 
-      <% @articles.each do |article| %>
-        <a href="<%= article["url"] %>"><li><%= article["title"] %></li></a>
+      <% @articles.each do |title, hash| %>
+        <a href="<%= hash[:url] %>"><li><%= title %></li></a>
       <%end%>
 
     </ul>
