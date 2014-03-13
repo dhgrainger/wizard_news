@@ -46,7 +46,6 @@ describe WizardArticle do
 
         expect(articles[1][0]).to eq('wizard')
       end
-
     end
 end
 
