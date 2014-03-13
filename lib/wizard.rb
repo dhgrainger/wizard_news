@@ -3,43 +3,33 @@ require 'CSV'
 require 'shotgun'
 require 'pry'
 require_relative'article_class.rb'
-
+file = '../article.csv'
 
 def read(file)
   articles = Hash.new
   CSV.foreach(file, headers: true) do |row|
-  	rows = row.to_hash
-  	articles.store(rows["url"], {title: rows["title"], article: rows["article"]})
+  	articles.store(row["url"], {title: row["title"], article: row["article"]})
   end
   articles
 end
 
-
-
 post '/article' do
 	article = WizardArticle.new(params['title'], params['url'], params['article'])
-	article.write('article.csv')
-	articles = read('article.csv')
+	article.write(file)
+	articles = read(file)
 	redirect '/'
 end
 
 get '/' do
-   @articles = read('article.csv')
-   erb :index
+  @articles = read(file)
+  erb :index
 end
 
-# articles = read('article.csv')
 get '/:url' do
-  @articles = read('article.csv')
+  @articles = read(file)
   @header = @articles[params[:url]][:title]
   @article = @articles[params[:url]][:article]
   erb :wizard_news
 end
 
-#  articles.each do |title, hash|
-#   get "/#{URI::encode(hash[:url])}" do
-#     @header = title
-#     @article = hash[:article]
-#     erb :wizard_news
-#   end
-# end
+

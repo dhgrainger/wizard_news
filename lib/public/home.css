@@ -31,8 +31,12 @@ table {
 input#article {
     width: 600px;
     height: 200px;
+
 }
 
 input#button {
     border-radius: 1px;
+    background-color: white;
+    text-align: center;
+
 }

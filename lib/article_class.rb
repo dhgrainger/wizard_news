@@ -1,6 +1,7 @@
 require'CSV'
 
 class WizardArticle
+	attr_reader :title, :url, :article
 	def initialize(title, url, article)
 		@title = title
 		@url = url
@@ -16,6 +17,4 @@ class WizardArticle
 			csv << [@title, @url, @article]
 		end
 	end
-
-	
 end
